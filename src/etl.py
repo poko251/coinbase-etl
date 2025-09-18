@@ -26,3 +26,28 @@ def load_transactions(filepath: str) -> pd.DataFrame:
     return df
 
 
+def clean_currency_columns(df: pd.DataFrame, col_names:list[str]) -> pd.DataFrame:
+
+    for col in col_names:
+        df[f"{col}_clean"] = (
+            df[col]
+            .astype(str)
+            .str.replace("zł", "", regex=False)
+            .str.replace(",", ".", regex=False)
+            .astype(float)
+        )
+    return df
+
+
+def filter_transactions(df: pd.DataFrame, transaction_type:str) -> pd.DataFrame:
+
+    df = df[df["Transaction Type"] == transaction_type]
+
+    return df
+
+def save_clean_data(df: pd.DataFrame, filename: str = "processed_data.csv") -> str:
+    folder = "data/processed"
+    os.makedirs(folder, exist_ok=True)   # upewniamy się, że folder istnieje
+    path = os.path.join(folder, filename)
+    df.to_csv(path, index=False)         # zapisujemy dane
+    return path
