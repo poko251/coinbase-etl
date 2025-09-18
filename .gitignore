@@ -1,0 +1,47 @@
+# =======================
+# Data files
+# =======================
+data/raw/*
+data/processed/*
+
+# =======================
+# Python cache and build
+# =======================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+build/
+dist/
+
+# =======================
+# Virtual environments
+# =======================
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+
+# =======================
+# Jupyter Notebook
+# =======================
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# =======================
+# Streamlit
+# =======================
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# =======================
+# System files
+# =======================
+.DS_Store
+Thumbs.db
