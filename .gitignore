@@ -45,3 +45,9 @@ env.bak/
 # =======================
 .DS_Store
 Thumbs.db
+
+# =======================
+# But keep the .gitkeep placeholder
+# =======================
+!data/raw/.gitkeep
+!data/processed/.gitkeep
