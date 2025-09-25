@@ -4,7 +4,8 @@ import os
 
 def get_file_path() -> str: 
     folder_path = "data/raw"
-    files = os.listdir(folder_path)
+    files = [f for f in os.listdir(folder_path) if f != ".gitkeep"]
+
 
     #checks if only one file inside
 
@@ -26,7 +27,8 @@ def load_transactions(filepath: str) -> pd.DataFrame:
     return df
 
 
-def clean_currency_columns(df: pd.DataFrame, col_names:list[str]) -> pd.DataFrame:
+def clean_currency_columns(df: pd.DataFrame, col_names:list[str]=['Price at Transaction', 'Subtotal',
+       'Total (inclusive of fees and/or spread)', 'Fees and/or Spread']) -> pd.DataFrame:
 
     for col in col_names:
         df[f"{col}_clean"] = (
@@ -38,6 +40,12 @@ def clean_currency_columns(df: pd.DataFrame, col_names:list[str]) -> pd.DataFram
         )
     return df
 
+def convert_dates(df:pd.DataFrame, column="Timestamp") -> pd.DataFrame:
+    
+    df[column] = pd.to_datetime(df[column], utc=True)
+
+    return df
+
 
 def filter_transactions(df: pd.DataFrame, transaction_type:str) -> pd.DataFrame:
 
@@ -45,9 +53,12 @@ def filter_transactions(df: pd.DataFrame, transaction_type:str) -> pd.DataFrame:
 
     return df
 
+
+
 def save_clean_data(df: pd.DataFrame, filename: str = "processed_data.csv") -> str:
     folder = "data/processed"
     os.makedirs(folder, exist_ok=True)   # upewniamy się, że folder istnieje
     path = os.path.join(folder, filename)
     df.to_csv(path, index=False)         # zapisujemy dane
     return path
+
