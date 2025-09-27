@@ -1,7 +1,7 @@
 Coinbase Stats Dashboard
 
 Interactive dashboard for analyzing personal **Coinbase transactions**.  
-The project combines a simple **ETL pipeline** (load → clean → transform) with **analytical functions** and a **Streamlit dashboard** for visualization.  
+The project combines a simple **ETL pipeline** with **analytical functions** and a **Streamlit dashboard** for visualization.  
 Additionally, all functions can be reused in **Jupyter Notebook** for custom analysis.
 
 ---
